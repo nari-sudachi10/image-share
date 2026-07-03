@@ -1,5 +1,15 @@
 <?php
-$files = array_diff(scandir("uploads"), ["..", "."]);
+
+if (!file_exists("uploads")) {
+    mkdir("uploads",0777,true);
+}
+
+$files=array_diff(scandir("uploads"),[".",".."]);
+
+$clips=json_decode(
+    file_get_contents("clips.json"),
+    true
+);
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +99,7 @@ onclick="return confirm('削除しますか？');">
 
 <textarea
 id="clip<?= $i ?>"
-placeholder="メモ<?= $i ?>"></textarea>
+><?= htmlspecialchars($clips[$i]) ?></textarea>
 
 <div class="clip-buttons">
 
@@ -103,6 +113,11 @@ onclick="copyClip(<?= $i ?>)">
 class="btn delete"
 onclick="clearClip(<?= $i ?>)">
 🗑
+</button>
+
+<button
+onclick="saveClip(<?= $i ?>)">
+💾
 </button>
 
 </div>

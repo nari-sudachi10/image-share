@@ -37,3 +37,24 @@ function clearClip(id){
     document.getElementById("clip"+id).value="";
 
 }
+
+function saveClip(id){
+
+const text=document.getElementById("clip"+id).value;
+
+fetch("save_clip.php",{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/x-www-form-urlencoded"
+},
+
+body:
+"id="+id+
+"&text="+encodeURIComponent(text)
+
+});
+
+}
