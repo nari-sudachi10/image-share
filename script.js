@@ -40,21 +40,22 @@ function clearClip(id){
 
 function saveClip(id){
 
-const text=document.getElementById("clip"+id).value;
+    const text = document.getElementById("clip"+id).value;
 
-fetch("save_clip.php",{
+    fetch("save_clip.php",{
 
-method:"POST",
+        method:"POST",
 
-headers:{
-"Content-Type":
-"application/x-www-form-urlencoded"
-},
+        headers:{
+            "Content-Type":"application/x-www-form-urlencoded"
+        },
 
-body:
-"id="+id+
-"&text="+encodeURIComponent(text)
+        body:"id="+id+"&text="+encodeURIComponent(text)
 
-});
+    })
+    .then(res=>res.text())
+    .then(data=>{
+        alert(data);
+    });
 
 }
