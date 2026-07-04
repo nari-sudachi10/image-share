@@ -1,10 +1,10 @@
 <?php
 
-$file = "clips.json";
+$file = "db.php";
 
 if (!file_exists($file)) {
-    echo "clips.jsonがありません";
-    exit;
+echo "clips.jsonがありません";
+exit;
 }
 
 $data = json_decode(file_get_contents($file), true);
@@ -14,13 +14,19 @@ $text = $_POST["text"] ?? "";
 
 $data[$id] = $text;
 
-$result = file_put_contents(
-    $file,
-    json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
-);
+<?php
 
-if ($result === false) {
-    echo "保存失敗";
-} else {
-    echo "保存成功";
-}
+require "db.php";
+
+$id=$_POST["id"];
+$text=$_POST["text"];
+
+$stmt=$db->prepare("
+UPDATE clips
+SET text=?
+WHERE id=?
+");
+
+$stmt->execute([$text,$id]);
+
+echo "保存成功";

@@ -6,10 +6,20 @@ if (!file_exists("uploads")) {
 
 $files=array_diff(scandir("uploads"),[".",".."]);
 
-$clips=json_decode(
-    file_get_contents("clips.json"),
-    true
-);
+require "db.php";
+
+$stmt = $db->query("
+SELECT *
+FROM clips
+ORDER BY id
+");
+
+$clips = [];
+
+foreach($stmt as $row){
+    $clips[$row["id"]] = $row["text"];
+}
+
 ?>
 
 <!DOCTYPE html>
