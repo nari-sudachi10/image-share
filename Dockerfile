@@ -1,8 +1,9 @@
 FROM php:8.3-apache
 
-COPY . /var/www/html/
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql pgsql
 
-RUN mkdir -p /var/www/html/uploads \
-    && chmod -R 777 /var/www/html/uploads
+COPY . /var/www/html/
 
 EXPOSE 80

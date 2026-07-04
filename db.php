@@ -9,7 +9,7 @@ if (!$databaseUrl) {
 $url = parse_url($databaseUrl);
 
 $host = $url["host"];
-$port = $url["port"];
+$port = $url["port"] ?? 5432;  // ←これ重要（デフォルト5432）
 $dbname = ltrim($url["path"], "/");
 $user = $url["user"];
 $password = $url["pass"];
