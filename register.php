@@ -1,7 +1,15 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-echo "送信されました";
+$username = $_POST["username"];
+$email = $_POST["email"];
+$password = $_POST["password"];
+
+echo "<pre>";
+var_dump($username);
+var_dump($email);
+var_dump($password);
+echo "</pre>";
 }
 
 require "includes/header.php";
