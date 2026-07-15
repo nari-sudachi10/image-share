@@ -1,5 +1,8 @@
 <?php
-// 今はここは空でOK
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+echo "送信されました";
+}
 
 require "includes/header.php";
 ?>
