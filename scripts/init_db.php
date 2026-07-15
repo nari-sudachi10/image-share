@@ -1,6 +1,6 @@
 <?php
 
-require ".。/includes/db.php";
+require "../includes/db.php";
 
 $db->exec("
 CREATE TABLE IF NOT EXISTS clips (
