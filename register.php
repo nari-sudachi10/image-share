@@ -8,8 +8,8 @@ require "includes/header.php";
 
 <form method="post">
 <div>
-<label for="name">ユーザー名</label>
-<input type="text" id="name" name="username">
+<label for="username">ユーザー名</label>
+<input type="text" id="username" name="username">
 </div>
 
 <div>
