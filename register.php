@@ -10,6 +10,16 @@ var_dump($username);
 var_dump($email);
 var_dump($password);
 echo "</pre>";
+
+$errors = [];
+
+if ($username === "") {
+$errors[] = "ユーザー名を入力してください";
+}
+
+if ($email === "") {
+$errors[] = "メールアドレスを入力してください";
+}
 }
 
 require "includes/header.php";
