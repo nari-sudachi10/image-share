@@ -6,7 +6,7 @@ if (!file_exists("uploads")) {
 
 $files=array_diff(scandir("uploads"),[".",".."]);
 
-require "db.php";
+require "includes/db.php";
 
 $stmt = $db->query("
 SELECT *
