@@ -1,5 +1,5 @@
 <?php if (!empty($loadScript)): ?>
-<script src="assets/js/script.js" defer></script>
+<script src="assets/script.js" defer></script>
 <?php endif; ?>
 
 </div>
