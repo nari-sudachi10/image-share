@@ -22,21 +22,11 @@ foreach($stmt as $row){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Share</title>
-
-<link rel="stylesheet" href="assets/style.css">
-<script src="assets/script.js" defer></script>
-</head>
-<body>
-
-<div class="container">
-
-<h1>📷 Image Share</h1>
+<?php
+$title = "Image Share";
+$loadScript = true;
+require "includes/header.php";
+?>
 
 <div class="tabs">
 <button class="tab-btn active" onclick="showTab('image', this)">
@@ -140,7 +130,6 @@ onclick="saveClip(<?= $i ?>)">
 
 </div>
 
-</div>
-
-</body>
-</html>
+<?php
+require "include/footer.php";
+?>
