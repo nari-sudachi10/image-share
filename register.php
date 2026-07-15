@@ -20,6 +20,8 @@ $errors[] = "ユーザー名を入力してください";
 if ($email === "") {
 $errors[] = "メールアドレスを入力してください";
 }
+
+var_dump($errors);
 }
 
 require "includes/header.php";
