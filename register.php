@@ -29,6 +29,20 @@ require "includes/header.php";
 
 <h2>新規登録</h2>
 
+<?php if (!empty($errors)): ?>
+
+<ul>
+
+<?php foreach ($errors as $error): ?>
+
+<li><?= htmlspecialchars($error) ?></li>
+
+<?php endforeach; ?>
+
+</ul>
+
+<?php endif; ?>
+
 <form method="post">
 <div>
 <label for="username">ユーザー名</label>
