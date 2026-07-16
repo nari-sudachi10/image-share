@@ -1,5 +1,7 @@
 <?php
 
+require "includes/db.php";
+
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -57,7 +59,7 @@ require "includes/header.php";
 <form method="post">
 <div>
 <label for="username">ユーザー名</label>
-<input type="text" id="username" name="username" value="<?= htmlspecialchars($username ?? "") ?>"
+<input type="text" id="username" name="username" value="<?= htmlspecialchars($username ?? "") ?>">
 </div>
 
 <div>
