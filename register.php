@@ -42,6 +42,10 @@ $stmt->execute([$email]);
 
 $user = $stmt->fetch();
 var_dump($user);
+
+if ($user) {
+    $errors[] = "このメールアドレスは既に登録されています";
+}
 }
 
 }
