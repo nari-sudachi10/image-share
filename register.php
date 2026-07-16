@@ -1,11 +1,11 @@
 <?php
 
+$errors = [];
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $username = trim($_POST["username"] ?? "");
 $email = trim($_POST["email"] ?? "");
 $password = $_POST["password"] ?? "";
-
-$errors = [];
 
 if ($username === "") {
 $errors[] = "ユーザー名を入力してください";
@@ -25,6 +25,12 @@ if ($password === "") {
 $errors[] = "パスワードを入力してください";
 } elseif (strlen($password) < 8) {
 $errors[] = "パスワードは8文字で入力してください";
+}
+
+if (empty($errors)) {
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+var_dump($passwordHash);
 }
 
 }
@@ -51,12 +57,12 @@ require "includes/header.php";
 <form method="post">
 <div>
 <label for="username">ユーザー名</label>
-<input type="text" id="username" name="username">
+<input type="text" id="username" name="username" value="<?= htmlspecialchars($username ?? "") ?>"
 </div>
 
 <div>
 <label for="email">メールアドレス</label>
-<input type="email" id="email" name="email">
+<input type="email" id="email" name="email" value="<?= htmlspecialchars($email ?? "") ?>">
 </div>
 
 <div>
