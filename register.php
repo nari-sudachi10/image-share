@@ -36,6 +36,12 @@ if (empty($errors)) {
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
 var_dump($passwordHash);
+
+$stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->execute([$email]);
+
+$user = $stmt->fetch();
+var_dump($user);
 }
 
 }
