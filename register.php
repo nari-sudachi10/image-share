@@ -5,23 +5,28 @@ $username = trim($_POST["username"] ?? "");
 $email = trim($_POST["email"] ?? "");
 $password = $_POST["password"] ?? "";
 
-echo "<pre>";
-var_dump($username);
-var_dump($email);
-var_dump($password);
-echo "</pre>";
-
 $errors = [];
 
 if ($username === "") {
 $errors[] = "ユーザー名を入力してください";
 }
 
-if ($email === "") {
-$errors[] = "メールアドレスを入力してください";
+if (mb_strlen($username) > 30) {
+$errors[] = "ユーザー名は30文字以内で入力してください";
 }
 
-var_dump($errors);
+if ($email === "") {
+$errors[] = "メールアドレスを入力してください";
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+$errors[] = "メールアドレスの形式が正しくありません";
+}
+
+if ($password === "") {
+$errors[] = "パスワードを入力してください";
+} elseif (strlen($password) < 8) {
+$errors[] = "パスワードは8文字で入力してください";
+}
+
 }
 
 require "includes/header.php";
