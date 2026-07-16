@@ -44,6 +44,8 @@ $user = $stmt->fetch();
 var_dump($user);
 
 if ($user) {
+$errors[] = "このメールアドレスは既に登録されています";
+} else {
 $stmt = $db->prepare("
 INSERT INTO users (username, email, password_hash)
 VALUES (?, ?, ?)
@@ -54,8 +56,8 @@ $username,
 $email,
 $passwordHash
 ]);
-$errors[] = "このメールアドレスは既に登録されています";
 }
+
 }
 
 }
