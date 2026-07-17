@@ -82,6 +82,12 @@ exit;
 }
 
 }
+?>
+
+<?php
+$title = "新規登録";
+require "includes/header.php";
+?>
 
 
 <h2>新規登録</h2>
@@ -97,6 +103,11 @@ exit;
 <?php endforeach; ?>
 
 </ul>
+
+
+<?php
+require "includes/footer.php";
+?>
 
 <?php endif; ?>
 
