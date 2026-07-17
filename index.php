@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 if (!file_exists("uploads")) {
     mkdir("uploads",0777,true);
 }
@@ -22,21 +25,21 @@ foreach($stmt as $row){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Share</title>
+<?php
+$title = "Image Share";
+$loadScript = true;
+require "includes/header.php";
+?>
 
-<link rel="stylesheet" href="assets/style.css">
-<script src="assets/script.js" defer></script>
-</head>
-<body>
+<?php if (isset($_SESSION["user_id"])): ?>
 
-<div class="container">
+<p>こんにちは、<?= htmlspecialchars($_SESSION["username"]) ?>さん！</p>
 
-<h1>📷 Image Share</h1>
+<?php else: ?>
+
+<p>ログインしていません</p>
+
+<?php endif; ?>
 
 <div class="tabs">
 <button class="tab-btn active" onclick="showTab('image', this)">
@@ -140,7 +143,6 @@ onclick="saveClip(<?= $i ?>)">
 
 </div>
 
-</div>
-
-</body>
-</html>
+<?php
+require "includes/footer.php";
+?>
