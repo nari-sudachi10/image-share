@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 if (!file_exists("uploads")) {
     mkdir("uploads",0777,true);
 }
@@ -27,6 +30,16 @@ $title = "Image Share";
 $loadScript = true;
 require "includes/header.php";
 ?>
+
+<?php if (isset($_SESSION["user_id"])): ?>
+
+<p>こんにちは、<?= htmlspecialchars($_SESSION["username"]) ?>さん！</p>
+
+<?php else: ?>
+
+<p>ログインしていません</p>
+
+<?php endif; ?>
 
 <div class="tabs">
 <button class="tab-btn active" onclick="showTab('image', this)">
@@ -131,5 +144,5 @@ onclick="saveClip(<?= $i ?>)">
 </div>
 
 <?php
-require "include/footer.php";
+require "includes/footer.php";
 ?>

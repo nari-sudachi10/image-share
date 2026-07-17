@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
 
 require "includes/db.php";
 
@@ -70,7 +71,11 @@ $passwordHash
 
 $newUser = $stmt->fetch();
 
-var_dump($newUser);
+$_SESSION["user_id"] = $newUser["id"];
+$_SESSION["username"] = $username;
+
+header("Location: index.php");
+exit;
 
 }
 
@@ -78,8 +83,6 @@ var_dump($newUser);
 
 }
 
-require "includes/header.php";
-?>
 
 <h2>新規登録</h2>
 
