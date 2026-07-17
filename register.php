@@ -33,19 +33,29 @@ $errors[] = "パスワードは8文字で入力してください";
 }
 
 if (empty($errors)) {
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-var_dump($passwordHash);
 
 $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
 $stmt->execute([$email]);
 
-$user = $stmt->fetch();
-var_dump($user);
+$emailUser = $stmt->fetch();
+var_dump($emailUser);
 
-if ($user) {
+if ($emailUser) {
 $errors[] = "このメールアドレスは既に登録されています";
-} else {
+}
+
+$stmt = $db->prepare("SELECT id FROM users WHERE username = ?");
+$stmt->execute([$username]);
+$usernameUser = $stmt->fetch();
+
+if ($usernameUser) {
+$errors[] = "このユーザー名はすでに使われてます";
+}
+
+if (empty($errors)) {
+
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
 $stmt = $db->prepare("
 INSERT INTO users (username, email, password_hash)
 VALUES (?, ?, ?)
@@ -56,6 +66,9 @@ $username,
 $email,
 $passwordHash
 ]);
+
+echo "登録成功！";
+
 }
 
 }
