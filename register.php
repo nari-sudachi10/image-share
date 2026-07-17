@@ -59,6 +59,7 @@ $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 $stmt = $db->prepare("
 INSERT INTO users (username, email, password_hash)
 VALUES (?, ?, ?)
+RETURNING id
 ");
 
 $stmt->execute([
@@ -67,7 +68,9 @@ $email,
 $passwordHash
 ]);
 
-echo "登録成功！";
+$newUser = $stmt->fetch();
+
+var_dump($newUser);
 
 }
 
